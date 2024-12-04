@@ -1,4 +1,5 @@
 <div align="center" markdown>
+<img src="https://github.com/user-attachments/assets/ddb77656-8e0c-4b76-b2bf-dc082783eb7b" />
 
 # CLAHE filter visualizer
 
