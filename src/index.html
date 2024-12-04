@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      id="favicon"
+      rel="icon"
+      type="image/x-icon"
+      href=""
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/supervisely/js-bundle@2.1.97/sly-app-widgets-2.1.97.bundle.css"
+    />
+    <style>
+      #app-global-loading-icon {
+        background: white;
+        border-radius: 50%;
+        width: 75px;
+        height: 75px;
+        padding: 10px;
+        margin: 10px 0;
+        position: relative;
+      }
+
+      @keyframes app-loading-rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      #app-global-loading-icon::after {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: translate(-50%, -50%);
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-bottom-color: #fb4481;
+        animation: app-loading-rotation 1s linear infinite;
+      }
+
+      #app-global-loading-icon > img {
+        width: 75px;
+        border-radius: 50%;
+      }
+
+      .extended-app-header .app-session-header-widget > div {
+        margin-bottom: 0;
+        padding-left: 20px;
+      }
+
+      .app-session-header-solid {
+        background: white;
+        box-shadow: 0 5px 10px #0000000d;
+        border-bottom: 1px solid #dfe2e8;
+        position: relative;
+      }
+    </style>
+    <title>Dummy App</title>
+  </head>
+
+  <body style="background-color: #f4f7fe">
+    <center>
+      <div id="app-global-loading-icon">
+        <img src="https://app.supervise.ly/loading.gif" />
+      </div>
+    </center>
+    <script src="https://cdn.jsdelivr.net/gh/supervisely/js-bundle@2.1.97/sly-app-widgets-2.1.97.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/gh/supervisely-ecosystem/supervisely-app-frontend-js@vv0.0.54/SlyApp.js"
+    ></script>
+    <script>
+      window.parent.postMessage('{ "showHeader": false }', "*");
+    </script>
+
+
+
+    <div id="sly-app">
+      <sly-app>
+        <template v-slot="{ post, state, data, session, ee }">
+          <div
+            :style="{'padding': `${state.app_body_padding} ${state.app_body_padding} 0`, 'display': 'flex', 'flex-direction': 'row', 'place-items': 'center'}"
+
+
+
+          >
+            <sly-app-header
+              v-if="session"
+              :session="session"
+              :data="data"
+              :state="state"
+            ></sly-app-header>
+
+          </div>
+          <div
+            :style="{'padding': `0 ${state.app_body_padding} ${state.app_body_padding}`}"
+          >
+             <div><div v-if="!data.__app_main_layout__.hide" v-loading="data.__app_main_layout__.loading"><link href="./sly/css/app/widgets/container/style.css" rel="stylesheet" v-if="!data.ContainerAutoIdkEdJB.hide" v-loading="data.ContainerAutoIdkEdJB.loading"/>
+<!-- should be widget._direction == 'vertical' instead of widget._flex_direction == 'vertical' -->
+<div class="container" style="flex-direction: column; gap: 10px; " v-if="!data.ContainerAutoIdkEdJB.hide" v-loading="data.ContainerAutoIdkEdJB.loading">
+<div style=""><link href="./sly/css/app/widgets/card/style.css" rel="stylesheet" v-if="!data.CardAutoIdvO0TR.hide" v-loading="data.CardAutoIdvO0TR.loading"/>
+<sly-card :collapsed="state.CardAutoIdvO0TR.collapsed" :disabled="state.CardAutoIdvO0TR.disabled" :options="data.CardAutoIdvO0TR.options" :subtitle="data.CardAutoIdvO0TR.description" :title="data.CardAutoIdvO0TR.title" style="width: 100%" v-if="!data.CardAutoIdvO0TR.hide" v-loading="data.CardAutoIdvO0TR.loading">
+
+<div>
+  <div>Clip Limit: {{state.SliderAutoId6MqE3.value}}</div>
+  <el-slider :disabled="data.SliderAutoId6MqE3.disabled" :height="data.SliderAutoId6MqE3.height" :max="data.SliderAutoId6MqE3.max" :min="data.SliderAutoId6MqE3.min" :range="data.SliderAutoId6MqE3.range" :show-input="data.SliderAutoId6MqE3.showInput" :show-input-controls="data.SliderAutoId6MqE3.showInputControls" :show-stops="data.SliderAutoId6MqE3.showStops" :show-tooltip="data.SliderAutoId6MqE3.showTooltip" :step="data.SliderAutoId6MqE3.step" :value="state.SliderAutoId6MqE3.value" :vertical="data.SliderAutoId6MqE3.vertical" @input="state.SliderAutoId6MqE3.value = $event; runPythonScriptThrottled();" style="padding: 20px" v-if="!data.SliderAutoId6MqE3.hide" v-loading="data.SliderAutoId6MqE3.loading">
+</el-slider>
+  <div>
+    <!-- <el-button type="primary" @click="ee.emit('store-action', { action: 'videos/prevImage'})">prev</el-button> -->
+    <!-- <el-button type="primary" @click="ee.emit('store-action', { action: 'videos/nextImage'})">next</el-button> -->
+    <el-button type="primary" @click="runPythonScript()">Apply</el-button>
+    <el-button type="primary" @click="runPythonScript('restore')">Restore</el-button>
+  </div>
+</div>
+
+<div slot="header" v-if="data.CardAutoIdvO0TR.show_slot">
+		None
+	</div>
+</sly-card></div>
+</div></div></div>  <el-dialog
+  v-model="state.slyAppShowDialog"
+  :title="data.slyAppDialogTitle"
+  size="tiny"
+>
+  <div class="fflex" style="margin: -20px 0 -20px 0">
+    <i
+      v-if="data.slyAppDialogStatus === 'info'"
+      class="notification-box-icon el-icon-information information mr15"
+      style="font-size: 35px; color: #50bfff"
+    ></i>
+    <i
+      v-if="data.slyAppDialogStatus === 'success'"
+      class="notification-box-icon el-icon-circle-check information mr15"
+      style="font-size: 35px; color: #13ce66"
+    ></i>
+    <i
+      v-if="data.slyAppDialogStatus === 'warning'"
+      class="notification-box-icon el-icon-warning information mr15"
+      style="font-size: 35px; color: #f7ba2a"
+    ></i>
+    <i
+      v-if="data.slyAppDialogStatus === 'error'"
+      class="notification-box-icon el-icon-circle-cross information mr15"
+      style="font-size: 35px; color: #ff4949"
+    ></i>
+
+    <span
+      style="min-height: 35px; align-items: center; word-break: break-word"
+      v-html="data.slyAppDialogMessage"
+    ></span>
+  </div>
+
+  <div slot="footer">
+    <el-button type="primary" @click="state.slyAppShowDialog = false;"
+      >Ok</el-button
+    >
+  </div>
+</el-dialog>
+          </div>
+        </template>
+      </sly-app>
+    </div>
+
+    <!-- Offline session styles fix -->
+    <script>
+      let resizeCounter = 0;
+      let resizeInterval = setInterval(() => {
+        resizeCounter += 1;
+        window.dispatchEvent(new Event("resize"));
+
+        if (resizeCounter > 3) {
+          clearInterval(resizeInterval);
+        }
+      }, 2000);
+
+      let pyodide = null;
+      let mainScriptTxt = null;
+
+      async function loadMainPythonScript(){
+        pyodide = await loadPyodide();
+        await pyodide.loadPackage(["numpy", "opencv-python"]);
+
+        mainScriptTxt = await fetch("./main.py").then((response) => response.text());
+      }
+
+      let initPromise = null;
+
+      async function runPythonScript(...params) {
+        if (initPromise) {
+          await initPromise;
+          initPromise = null;
+        }
+
+        let result;
+        const timeStart = performance.now();
+
+        console.log('Applying CLAHE...')
+        const fn = pyodide.runPython(mainScriptTxt);
+        if (typeof fn === "function") {
+          const newParams = params.map(p => pyodide.toPy(p));
+          result = fn(...newParams);
+        } else {
+          result = fn;
+        }
+
+        const timeEnd = performance.now();
+        console.log("CLAHE executed in", timeEnd - timeStart, "ms");
+
+        return result;
+      }
+
+      const runPythonScriptThrottled = _.throttle(runPythonScript, 50);
+
+      initPromise = loadMainPythonScript();
+    </script>
+  </body>
+</html>
