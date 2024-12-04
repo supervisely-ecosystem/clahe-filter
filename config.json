@@ -5,7 +5,7 @@
     "description": "Apply a CLAHE filter to an image",
     "categories": [""],
     "session_tags": [""],
-    "min_instance_version": "6.12.13",
+    "min_instance_version": "6.0.0",
     "integrated_into": ["image_annotation_tool"],
     "gui_folder_path": "src"
   }
