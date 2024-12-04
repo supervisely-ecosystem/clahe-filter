@@ -2,9 +2,11 @@
     "type": "client_side_app",
     "version": "2.0.0",
     "name": "CLAHE Filter",
-    "description": "Apply a CLAHE filter to an image",
-    "categories": [""],
-    "session_tags": [""],
+    "description": "Real-time CLAHE filter visualization",
+    "categories": [
+      "images",
+      "visualization"
+    ],
     "min_instance_version": "6.12.13",
     "integrated_into": ["image_annotation_tool"],
     "gui_folder_path": "src"
