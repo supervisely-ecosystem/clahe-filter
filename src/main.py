@@ -13,7 +13,7 @@ def str2bool(v):
 
 def main(mode='process'):
 
-  def clahe(img_rgb_8_bits, clipLimit=2.0, tileGridSize=(8, 8)):
+  def apply_clahe_lab(img_rgb_8_bits, clipLimit=2.0, tileGridSize=(8, 8)):
     img_lab = cv2.cvtColor(img_rgb_8_bits, cv2.COLOR_BGR2LAB)
     lab_planes = cv2.split(img_lab)
     clahe = cv2.createCLAHE(clipLimit=clipLimit, tileGridSize=tileGridSize)
@@ -69,7 +69,7 @@ def main(mode='process'):
 
       new_img_data = cl_img_rgba.flatten().astype(np.uint8)
     else:
-      new_img_data = clahe(img_arr, clip_limit, (8, 8)).flatten().astype(np.uint8)
+      new_img_data = apply_clahe_lab(img_arr, clip_limit, (8, 8)).flatten().astype(np.uint8)
 
   pixels_proxy = create_proxy(new_img_data)
   pixels_buf = pixels_proxy.getBuffer("u8clamped")
