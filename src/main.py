@@ -9,14 +9,16 @@ def dump(obj):
     print("obj.%s = %r" % (attr, getattr(obj, attr)))
 
 def main(mode='process'):
-  def clahe(img_rgb_8_bits, clipLimit=2.0, titleGridSize=(8, 8)):
+
+  def clahe(img_rgb_8_bits, clipLimit=2.0, tileGridSize=(8, 8)):
     img_lab = cv2.cvtColor(img_rgb_8_bits, cv2.COLOR_BGR2LAB)
     lab_planes = cv2.split(img_lab)
-    clahe = cv2.createCLAHE(clipLimit=clipLimit, tileGridSize=titleGridSize)
+    clahe = cv2.createCLAHE(clipLimit=clipLimit, tileGridSize=tileGridSize)
     lab_planes[0] = clahe.apply(lab_planes[0])
     img_lab = cv2.merge(lab_planes)
     img_rgb_8_bits = cv2.cvtColor(img_lab, cv2.COLOR_LAB2BGR)
     return img_rgb_8_bits
+  
   app = slyApp.app
   store = slyApp.store
   app = getattr(app, '$children')[0]
@@ -64,7 +66,7 @@ def main(mode='process'):
 
       new_img_data = cl_img_rgba.flatten().astype(np.uint8)
     else:
-      new_img_data = clahe(img_arr, clip_limit)
+      new_img_data = clahe(img_arr, clip_limit, (8, 8)).flatten().astype(np.uint8)
 
   pixels_proxy = create_proxy(new_img_data)
   pixels_buf = pixels_proxy.getBuffer("u8clamped")
