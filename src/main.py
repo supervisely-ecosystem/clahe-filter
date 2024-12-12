@@ -8,7 +8,8 @@ def dump(obj):
   for attr in dir(obj):
     print("obj.%s = %r" % (attr, getattr(obj, attr)))
 
-def clahe(img_rgb_8_bits, clipLimit=2.0, titleGridSize=(8, 8)):
+def main(mode='process'):
+  def clahe(img_rgb_8_bits, clipLimit=2.0, titleGridSize=(8, 8)):
     img_lab = cv2.cvtColor(img_rgb_8_bits, cv2.COLOR_BGR2LAB)
     lab_planes = cv2.split(img_lab)
     clahe = cv2.createCLAHE(clipLimit=clipLimit, tileGridSize=titleGridSize)
@@ -16,8 +17,6 @@ def clahe(img_rgb_8_bits, clipLimit=2.0, titleGridSize=(8, 8)):
     img_lab = cv2.merge(lab_planes)
     img_rgb_8_bits = cv2.cvtColor(img_lab, cv2.COLOR_LAB2BGR)
     return img_rgb_8_bits
-
-def main(mode='process'):
   app = slyApp.app
   store = slyApp.store
   app = getattr(app, '$children')[0]
