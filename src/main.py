@@ -8,6 +8,9 @@ def dump(obj):
   for attr in dir(obj):
     print("obj.%s = %r" % (attr, getattr(obj, attr)))
 
+def str2bool(v):
+  return v.lower() in ("true", "1")
+
 def main(mode='process'):
 
   def clahe(img_rgb_8_bits, clipLimit=2.0, tileGridSize=(8, 8)):
@@ -54,7 +57,7 @@ def main(mode='process'):
     new_img_data = img_arr.flatten()
   else:
     clip_limit = state.SliderAutoId6MqE3.value
-    if state.labCheck is False:
+    if str2bool(state.labCheck) is False:
       img_gray = cv2.cvtColor(img_arr, cv2.COLOR_RGBA2GRAY)
       clahe = cv2.createCLAHE(clipLimit=clip_limit, tileGridSize=(8, 8))
 
