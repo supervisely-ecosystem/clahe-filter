@@ -113,7 +113,7 @@
 
 <div>
   <el-checkbox v-model="state.labCheck">Apply CLAHE to lightness</el-checkbox>
-  <div>Clip Limit: {{state.SliderAutoId6MqE3.value}}</div>
+  <div style="margin-top: 10px;">Clip Limit: {{state.SliderAutoId6MqE3.value}}</div>
   <el-slider :disabled="data.SliderAutoId6MqE3.disabled" :height="data.SliderAutoId6MqE3.height" :max="data.SliderAutoId6MqE3.max" :min="data.SliderAutoId6MqE3.min" :range="data.SliderAutoId6MqE3.range" :show-input="data.SliderAutoId6MqE3.showInput" :show-input-controls="data.SliderAutoId6MqE3.showInputControls" :show-stops="data.SliderAutoId6MqE3.showStops" :show-tooltip="data.SliderAutoId6MqE3.showTooltip" :step="data.SliderAutoId6MqE3.step" :value="state.SliderAutoId6MqE3.value" :vertical="data.SliderAutoId6MqE3.vertical" @input="state.SliderAutoId6MqE3.value = $event; runPythonScriptThrottled();" style="padding: 20px" v-if="!data.SliderAutoId6MqE3.hide" v-loading="data.SliderAutoId6MqE3.loading">
 </el-slider>
   <div>
