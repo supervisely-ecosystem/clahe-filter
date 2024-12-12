@@ -10,5 +10,6 @@
     "app_body_padding": "20px",
     "slyAppShowDialog": false,
     "imagePixelsData": null,
-    "imagePixelsDataImageId": 0
+    "imagePixelsDataImageId": 0,
+    "labCheck": false
 }
