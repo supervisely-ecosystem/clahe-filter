@@ -51,7 +51,7 @@ def main(mode='process'):
       cl_img_gray = clahe.apply(img_gray)
       cl_img_rgb = cv2.cvtColor(cl_img_gray, cv2.COLOR_GRAY2RGB)
     else:
-      img_lab = cv2.cvtColor(img_arr, cv2.COLOR_BGR2LAB)
+      img_lab = cv2.cvtColor(img_arr, cv2.COLOR_RGB2LAB)
 
       lab_planes = list(cv2.split(img_lab))
       lab_planes[0] = clahe.apply(lab_planes[0])
