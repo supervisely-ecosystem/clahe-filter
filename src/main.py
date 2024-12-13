@@ -50,6 +50,8 @@ def main(mode='process'):
       img_gray = cv2.cvtColor(img_arr, cv2.COLOR_RGBA2GRAY)
       cl_img_gray = clahe.apply(img_gray)
       cl_img_rgb = cv2.cvtColor(cl_img_gray, cv2.COLOR_GRAY2RGB)
+      alpha_channel = img_arr[:, :, 3]
+      cl_img = np.dstack((cl_img_rgb, alpha_channel))
     else:
       img_lab = cv2.cvtColor(img_arr, cv2.COLOR_BGR2LAB)
 
@@ -57,10 +59,8 @@ def main(mode='process'):
       lab_planes[0] = clahe.apply(lab_planes[0])
       img_lab = cv2.merge(lab_planes)
 
-      cl_img_rgb = cv2.cvtColor(img_lab, cv2.COLOR_LAB2BGR)
+      cl_img = cv2.cvtColor(img_lab, cv2.COLOR_LAB2RGBA)
 
-    alpha_channel = img_arr[:, :, 3]
-    cl_img = np.dstack((cl_img_rgb, alpha_channel))
     new_img_data = cl_img.flatten().astype(np.uint8)
 
   pixels_proxy = create_proxy(new_img_data)
